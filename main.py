@@ -46,11 +46,15 @@ class PhysicsGui(tk.Tk):
         tk.Tk.__init__(self)
         self._frame = None
         self.switch_frame(StartPage)
+        icon = tk.PhotoImage(file='C:\\Users\\EKLAVYA\\Pictures\\GUI\\icon_image.png')
+        self.iconphoto(False, icon)
 
     def switch_frame(self, page_class):
         new_frame = page_class(self)
+        # Destroys original frame
         if self._frame is not None:
             self._frame.destroy()
+        # switches to the new frame class
         self._frame = new_frame
         self._frame.pack()
 
@@ -59,17 +63,16 @@ class StartPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         self.config(height=PhysicsGui.winfo_screenheight(self), width=PhysicsGui.winfo_screenwidth(self), bg='red')
-        label1 = tk.Label(text=
-                          '''PHYSICS GUI
-                          THIS IS THE FIRST PAGE''', bg='black', fg='white', width=PhysicsGui.winfo_screenwidth(self))
-        label1.place(relx=0.5, rely=0.01, anchor='center')
+        TopBar().place(rely=0)
         button1 = tk.Button(text="Click to see plot 1", command=plot1)
         button1.place(relx=0.2, rely=0.2)
         a = SideNavigationBar()
         a.place(relx=0, rely=0)
-        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(SecondPage))
+        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
         btn1.place(relx=0.03, rely=0.1)
-class SecondPage(tk.Frame):
+
+
+class AboutProject(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         self.config(height=PhysicsGui.winfo_screenheight(self), width=PhysicsGui.winfo_screenwidth(self), bg='red')
@@ -79,6 +82,8 @@ class SecondPage(tk.Frame):
         button1 = SideButton(text='This is the first button', command=lambda: master.switch_frame(StartPage))
         button1.place(relx=0.5, rely=0.5)
         SideNavigationBar()
+
+# Creating a button class that will change text color on hover
 class SideButton(tk.Button):
     def __init__(self, text, command):
         tk.Button.__init__(self)
@@ -93,10 +98,26 @@ class SideButton(tk.Button):
             self.config(fg='grey')
         self.bind('<Enter>', hover)
         self.bind('<Leave>', leave)
+
+
 class SideNavigationBar(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
         self.config(bg='black', height=PhysicsGui.winfo_screenheight(self), width=300)
+
+
+class TopBar(tk.Frame):
+    def __init__(self):
+        tk.Frame.__init__(self)
+        self.config(width=PhysicsGui.winfo_screenwidth(self), height=55, bg='black')
+        label1 = tk.Label(text='INTERACTIVE PHYSICS', bg='black', fg='red', highlightthickness=0, font=('Courier', 30))
+        label1.place(relx=0.5, rely=0.03, anchor='center')
+        label2 = tk.Label(
+            text=
+            '''        Made by: 
+            EKLAVYA RAMAN''', bg='black', fg='red', font=('Courier', 15))
+        label2.place_configure(x=PhysicsGui.winfo_screenwidth(self)-350, y=0.8)
+
 
 
 
