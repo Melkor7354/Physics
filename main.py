@@ -65,6 +65,10 @@ class StartPage(tk.Frame):
         label1.place(relx=0.5, rely=0.01, anchor='center')
         button1 = tk.Button(text="Click to see plot 1", command=plot1)
         button1.place(relx=0.2, rely=0.2)
+        a = SideNavigationBar()
+        a.place(relx=0, rely=0)
+        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(SecondPage))
+        btn1.place(relx=0.03, rely=0.1)
 class SecondPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -74,6 +78,7 @@ class SecondPage(tk.Frame):
         label2.place(relx=0.5, rely=0.01, anchor='center')
         button1 = SideButton(text='This is the first button', command=lambda: master.switch_frame(StartPage))
         button1.place(relx=0.5, rely=0.5)
+        SideNavigationBar()
 class SideButton(tk.Button):
     def __init__(self, text, command):
         tk.Button.__init__(self)
@@ -81,15 +86,17 @@ class SideButton(tk.Button):
         self.command = command
         self['text'] = self.text
         self['command'] = self.command
-        self.config(bg='black', fg='grey', activebackground='black', activeforeground='white')
+        self.config(bg='black', fg='grey', activebackground='black', activeforeground='white', borderwidth=0)
         def hover(e):
             self.config(fg='white')
         def leave(e):
             self.config(fg='grey')
         self.bind('<Enter>', hover)
         self.bind('<Leave>', leave)
-
-
+class SideNavigationBar(tk.Frame):
+    def __init__(self):
+        tk.Frame.__init__(self)
+        self.config(bg='black', height=PhysicsGui.winfo_screenheight(self), width=300)
 
 
 
