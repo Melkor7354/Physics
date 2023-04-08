@@ -66,22 +66,20 @@ class StartPage(tk.Frame):
         TopBar().place(rely=0)
         button1 = tk.Button(text="Click to see plot 1", command=plot1)
         button1.place(relx=0.2, rely=0.2)
-        a = SideNavigationBar()
-        a.place(relx=0, rely=0)
+        SideNavigationBar().place(relx=0, rely=0)
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
-        btn1.place(relx=0.03, rely=0.1)
+        btn1.place(relx=-0.02, rely=0.1)
+
 
 
 class AboutProject(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         self.config(height=PhysicsGui.winfo_screenheight(self), width=PhysicsGui.winfo_screenwidth(self), bg='red')
-        label2 = tk.Label(text='''PHYSICS GUI
-        THIS IS THE SECOND PAGE''', bg='black', fg='white', width=PhysicsGui.winfo_screenwidth(self))
-        label2.place(relx=0.5, rely=0.01, anchor='center')
-        button1 = SideButton(text='This is the first button', command=lambda: master.switch_frame(StartPage))
-        button1.place(relx=0.5, rely=0.5)
-        SideNavigationBar()
+        TopBar().place(rely=0)
+        SideNavigationBar().place(relx=0, rely=0)
+        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(StartPage))
+        btn1.place(relx=-0.02, rely=0.1)
 
 # Creating a button class that will change text color on hover
 class SideButton(tk.Button):
@@ -91,7 +89,7 @@ class SideButton(tk.Button):
         self.command = command
         self['text'] = self.text
         self['command'] = self.command
-        self.config(bg='black', fg='grey', activebackground='black', activeforeground='white', borderwidth=0)
+        self.config(bg='black', fg='grey', activebackground='black', activeforeground='white', borderwidth=0, font=('Courier', 16), width=24)
         def hover(e):
             self.config(fg='white')
         def leave(e):
@@ -104,6 +102,7 @@ class SideNavigationBar(tk.Frame):
     def __init__(self):
         tk.Frame.__init__(self)
         self.config(bg='black', height=PhysicsGui.winfo_screenheight(self), width=300)
+
 
 
 class TopBar(tk.Frame):
