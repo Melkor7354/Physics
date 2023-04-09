@@ -13,7 +13,9 @@ def dark_title_bar(window):
     value = ct.c_int(value)
     set_window_attribute(hwnd, 20, ct.byref(value),
                          4)
-def openGitHub():
+
+
+def open_github():
     webbrowser.open(url='https://github.com/Melkor7354/Physics')
 
 
@@ -31,10 +33,12 @@ class PhysicsGui(tk.Tk):
         self.attributes('-fullscreen', False)
         self.bind("<F11>", self.toggle_full_screen)
         self.FullScreen = True
+
     def toggle_full_screen(self, event):
         self.FullScreen = not self.FullScreen
         self.attributes('-fullscreen', self.FullScreen)
         dark_title_bar(self)
+
     def switch_frame(self, page_class):
         new_frame = page_class(self)
         # Destroys original frame
@@ -56,17 +60,13 @@ class StartPage(tk.Frame):
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
         btn1.place(relx=-0.015, rely=0.15)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
-        homebutton = Home_Button(command=lambda: master.switch_frame(StartPage), image=home)
+        homebutton = HomeButton(command=lambda: master.switch_frame(StartPage), image=home)
         homebutton.place(relx=0.01, rely=0.08)
         icon = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon.png")
-        icon_img = Home_Button(image=icon)
+        icon_img = HomeButton(image=icon)
         icon_img.place(relx=0.01, rely=0)
-        btn2 = SideButton(text="GITHUB REPOSITORY", command=openGitHub)
+        btn2 = SideButton(text="GITHUB REPOSITORY", command=open_github)
         btn2.place(relx=-0.015, rely=0.195)
-
-
-
-
 
 
 class AboutProject(tk.Frame):
@@ -78,12 +78,12 @@ class AboutProject(tk.Frame):
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
         btn1.place(relx=-0.015, rely=0.15)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
-        homebutton = Home_Button(command=lambda: master.switch_frame(StartPage), image=home)
+        homebutton = HomeButton(command=lambda: master.switch_frame(StartPage), image=home)
         homebutton.place(relx=0.01, rely=0.08)
         icon = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon.png")
-        icon_img = Home_Button(image=icon)
+        icon_img = HomeButton(image=icon)
         icon_img.place(relx=0.01, rely=0)
-        btn2 = SideButton(text="GITHUB REPOSITORY", command=openGitHub)
+        btn2 = SideButton(text="GITHUB REPOSITORY", command=open_github)
         btn2.place(relx=-0.015, rely=0.195)
 
 
@@ -129,7 +129,7 @@ class TopBar(tk.Frame):
         label2.place_configure(x=PhysicsGui.winfo_screenwidth(self)-350, y=0.8)
 
 
-class Home_Button(tk.Button):
+class HomeButton(tk.Button):
     def __init__(self, command=None, image=None, text=None, bg='black', borderwidth=0):
         tk.Button.__init__(self)
         self.command = command
@@ -142,12 +142,6 @@ class Home_Button(tk.Button):
         self['text'] = text
         self['bg'] = bg
         self['borderwidth'] = borderwidth
-
-
-
-
-
-
 
 
 app = PhysicsGui()
