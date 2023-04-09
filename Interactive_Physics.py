@@ -2,6 +2,8 @@ import tkinter as tk
 import plots
 
 
+
+
 class PhysicsGui(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
@@ -31,6 +33,10 @@ class StartPage(tk.Frame):
         SideNavigationBar().place(relx=0, rely=0)
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
         btn1.place(relx=-0.02, rely=0.1)
+        home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
+        homebutton = Home_Button(command=lambda: master.switch_frame(StartPage), image=home)
+        homebutton.place(relx=0.5, rely=0.5)
+
 
 
 class AboutProject(tk.Frame):
@@ -41,6 +47,9 @@ class AboutProject(tk.Frame):
         SideNavigationBar().place(relx=0, rely=0)
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(StartPage))
         btn1.place(relx=-0.02, rely=0.1)
+        home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
+        homebutton = Home_Button(command=lambda: master.switch_frame(StartPage), image=home)
+        homebutton.place(relx=0.01, rely=0.01)
 
 
 # Creating a button class that will change text color on hover
@@ -77,7 +86,23 @@ class TopBar(tk.Frame):
             '''        Made by: 
             EKLAVYA RAMAN''', bg='black', fg='red', font=('Courier', 15))
         label2.place_configure(x=PhysicsGui.winfo_screenwidth(self)-350, y=0.8)
+class Home_Button(tk.Button):
+    def __init__(self, command, image, text=None, bg='black', borderwidth=0):
+        tk.Button.__init__(self)
+        self.command = command
+        self.text = text
+        self.image = image
+        self.bg = bg
+        self.borderwidth = borderwidth
+        self['command'] = command
+        self['image'] = image
+        self['text'] = text
+        self['bg'] = bg
+        self['borderwidth'] = borderwidth
+
+
 
 
 app = PhysicsGui()
+
 app.mainloop()
