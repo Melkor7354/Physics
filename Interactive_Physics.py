@@ -2,8 +2,6 @@ import tkinter as tk
 import plots
 
 
-
-
 class PhysicsGui(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
@@ -36,7 +34,6 @@ class StartPage(tk.Frame):
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
         homebutton = Home_Button(command=lambda: master.switch_frame(StartPage), image=home)
         homebutton.place(relx=0.01, rely=0.07)
-
 
 
 class AboutProject(tk.Frame):
@@ -86,6 +83,8 @@ class TopBar(tk.Frame):
             '''        Made by: 
             EKLAVYA RAMAN''', bg='black', fg='red', font=('Courier', 15))
         label2.place_configure(x=PhysicsGui.winfo_screenwidth(self)-350, y=0.8)
+
+
 class Home_Button(tk.Button):
     def __init__(self, command, image, text=None, bg='black', borderwidth=0):
         tk.Button.__init__(self)
