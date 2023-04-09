@@ -23,7 +23,7 @@ def plot1():
     # Create a slider from 0.0 to 10.0 in axes axfreq
     # with 5 as initial value and valsteps of 1.0
     amplitude = Slider(axamplitude, 'Amplitude', 0.0,
-                       10.0, 5, valstep=1.0)
+                       10.0, 5, valstep=0.01)
 
     # Create function to be called when slider value is changed
 
