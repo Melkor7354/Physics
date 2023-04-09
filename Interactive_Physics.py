@@ -32,10 +32,10 @@ class StartPage(tk.Frame):
         button1.place(relx=0.2, rely=0.2)
         SideNavigationBar().place(relx=0, rely=0)
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
-        btn1.place(relx=-0.02, rely=0.1)
+        btn1.place(relx=-0.015, rely=0.14)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
         homebutton = Home_Button(command=lambda: master.switch_frame(StartPage), image=home)
-        homebutton.place(relx=0.5, rely=0.5)
+        homebutton.place(relx=0.01, rely=0.07)
 
 
 
@@ -46,10 +46,10 @@ class AboutProject(tk.Frame):
         TopBar().place(rely=0)
         SideNavigationBar().place(relx=0, rely=0)
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(StartPage))
-        btn1.place(relx=-0.02, rely=0.1)
+        btn1.place(relx=-0.015, rely=0.14)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
         homebutton = Home_Button(command=lambda: master.switch_frame(StartPage), image=home)
-        homebutton.place(relx=0.01, rely=0.01)
+        homebutton.place(relx=0.01, rely=0.07)
 
 
 # Creating a button class that will change text color on hover
