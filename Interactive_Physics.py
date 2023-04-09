@@ -1,6 +1,7 @@
 import tkinter as tk
 import plots
 import ctypes as ct
+import webbrowser
 
 
 def dark_title_bar(window):
@@ -12,6 +13,8 @@ def dark_title_bar(window):
     value = ct.c_int(value)
     set_window_attribute(hwnd, 20, ct.byref(value),
                          4)
+def openGitHub():
+    webbrowser.open(url='https://github.com/Melkor7354/Physics')
 
 
 class PhysicsGui(tk.Tk):
@@ -58,6 +61,12 @@ class StartPage(tk.Frame):
         icon = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon.png")
         icon_img = Home_Button(image=icon)
         icon_img.place(relx=0.01, rely=0)
+        btn2 = SideButton(text="GITHUB REPOSITORY", command=openGitHub)
+        btn2.place(relx=-0.015, rely=0.195)
+
+
+
+
 
 
 class AboutProject(tk.Frame):
@@ -66,7 +75,7 @@ class AboutProject(tk.Frame):
         self.config(height=PhysicsGui.winfo_screenheight(self), width=PhysicsGui.winfo_screenwidth(self), bg='red')
         TopBar().place(rely=0)
         SideNavigationBar().place(relx=0, rely=0)
-        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(StartPage))
+        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
         btn1.place(relx=-0.015, rely=0.15)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
         homebutton = Home_Button(command=lambda: master.switch_frame(StartPage), image=home)
@@ -74,16 +83,22 @@ class AboutProject(tk.Frame):
         icon = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon.png")
         icon_img = Home_Button(image=icon)
         icon_img.place(relx=0.01, rely=0)
+        btn2 = SideButton(text="GITHUB REPOSITORY", command=openGitHub)
+        btn2.place(relx=-0.015, rely=0.195)
 
 
 # Creating a button class that will change text color on hover
 class SideButton(tk.Button):
-    def __init__(self, text, command):
+    def __init__(self, text, command, image=None, compound=None):
         tk.Button.__init__(self)
         self.text = text
         self.command = command
+        self.image = image
+        self.compound = compound
         self['text'] = self.text
         self['command'] = self.command
+        self['image'] = self.image
+        self['compound'] = self.compound
         self.config(bg='black', fg='grey', activebackground='black', activeforeground='white', borderwidth=0, font=('Courier', 16), width=24)
 
         def hover(e):
@@ -127,6 +142,10 @@ class Home_Button(tk.Button):
         self['text'] = text
         self['bg'] = bg
         self['borderwidth'] = borderwidth
+
+
+
+
 
 
 
