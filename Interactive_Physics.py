@@ -1,5 +1,17 @@
 import tkinter as tk
 import plots
+import ctypes as ct
+
+
+def dark_title_bar(window):
+    window.update()
+    set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
+    get_parent = ct.windll.user32.GetParent
+    hwnd = get_parent(window.winfo_id())
+    value = 2
+    value = ct.c_int(value)
+    set_window_attribute(hwnd, 20, ct.byref(value),
+                         4)
 
 
 class PhysicsGui(tk.Tk):
@@ -10,7 +22,16 @@ class PhysicsGui(tk.Tk):
         icon = tk.PhotoImage(file='C:\\Users\\EKLAVYA\\Pictures\\GUI\\icon_image.png')
         self.iconphoto(False, icon)
         self.title("INTERACTIVE PHYSICS")
-
+        dark_title_bar(self)
+        self.minsize(self.winfo_screenwidth(), self.winfo_screenheight())
+        self.maxsize(self.winfo_screenwidth(), self.winfo_screenheight())
+        self.attributes('-fullscreen', False)
+        self.bind("<F11>", self.toggle_full_screen)
+        self.FullScreen = True
+    def toggle_full_screen(self, event):
+        self.FullScreen = not self.FullScreen
+        self.attributes('-fullscreen', self.FullScreen)
+        dark_title_bar(self)
     def switch_frame(self, page_class):
         new_frame = page_class(self)
         # Destroys original frame
@@ -64,8 +85,10 @@ class SideButton(tk.Button):
         self['text'] = self.text
         self['command'] = self.command
         self.config(bg='black', fg='grey', activebackground='black', activeforeground='white', borderwidth=0, font=('Courier', 16), width=24)
+
         def hover(e):
             self.config(fg='white')
+
         def leave(e):
             self.config(fg='grey')
         self.bind('<Enter>', hover)
