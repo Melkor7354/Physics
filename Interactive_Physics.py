@@ -10,6 +10,8 @@ color_topbar = '#03738C'
 color_frame = '#04ADBF'
 color_sidebutton_hover = '#B4CBD9'
 color_main = 'black'
+
+
 def dark_title_bar(window):
     window.update()
     set_window_attribute = ct.windll.dwmapi.DwmSetWindowAttribute
@@ -19,6 +21,7 @@ def dark_title_bar(window):
     value = ct.c_int(value)
     set_window_attribute(hwnd, 20, ct.byref(value),
                          4)
+
 
 def open_github():
     webbrowser.open(url='https://github.com/Melkor7354/Physics')
@@ -159,6 +162,7 @@ class ChapterName(tk.Button):
         self['text'] = self.text
         self['command'] = self.command
         self.config(bg="black", font=("Courier", 16), fg=color_topbar, activeforeground=color_frame, activebackground=color_main)
+
         def hover(e):
             self.config(fg=color_frame)
 
@@ -196,7 +200,6 @@ class TextAbout(tk.Text):
         self.text = text
         self['text'] = self.text
         self.config(bg=color_frame)
-
 
 
 app = PhysicsGui()
