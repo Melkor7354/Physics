@@ -190,12 +190,12 @@ class ChapterOne(tk.Frame):
         labl1.place(relx=0.5, rely=0.5)
 
 
-    class TextAbout(tk.Text):
-        def __init__(self, text):
-            tk.Text.__init__(self)
-            self.text = text
-            self['text'] = self.text
-            self.config(bg=color_frame)
+class TextAbout(tk.Text):
+    def __init__(self, text):
+        tk.Text.__init__(self)
+        self.text = text
+        self['text'] = self.text
+        self.config(bg=color_frame)
 
 
 
