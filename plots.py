@@ -18,9 +18,7 @@ def plot1():
     plt.axvline(linewidth=2, color='black')
     plt.ylabel("Displacement")
     plt.xlabel("Time")
-    ax.xaxis.set_major_locator(MultipleLocator(np.pi/2))
-    ax.yaxis.set_major_locator(MultipleLocator(1))
-    ax.grid(which='major', color='black', linestyle='--')
+    plt.grid(axis='both', color='black')
     # Create axes for frequency and amplitude sliders
     axfreq = plt.axes([0.25, 0.15, 0.65, 0.03])
     axamplitude = plt.axes([0.25, 0.1, 0.65, 0.03])
