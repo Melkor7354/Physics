@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button
+from matplotlib.ticker import (AutoMinorLocator, MultipleLocator)
 
 def plot1():
     # Create subplot
@@ -11,7 +12,15 @@ def plot1():
     t = np.arange(0.0, 1.0, 0.001)
     s = 5 * np.sin(2 * np.pi * 3 * t)
     l, = plt.plot(t, s)
-
+    l.set_color('red')
+    plt.title(r'$A\sin({2\pi\omega t})$')
+    plt.axhline(linewidth=2, color='black')
+    plt.axvline(linewidth=2, color='black')
+    plt.ylabel("Displacement")
+    plt.xlabel("Time")
+    ax.xaxis.set_major_locator(MultipleLocator(np.pi/2))
+    ax.yaxis.set_major_locator(MultipleLocator(1))
+    ax.grid(which='major', color='black', linestyle='--')
     # Create axes for frequency and amplitude sliders
     axfreq = plt.axes([0.25, 0.15, 0.65, 0.03])
     axamplitude = plt.axes([0.25, 0.1, 0.65, 0.03])
@@ -44,6 +53,8 @@ def electrostatics1():
     x = np.arange(0.0, 1.0, 0.01)
     y = (9 * 1 * 1)/(x**2)
     p, = plt.plot(x, y)
+
+
     axq1 = plt.axes([0.25, 0.15, 0.65, 0.03])
     axq2 = plt.axes([0.25, 0.1, 0.65, 0.03])
     charge1 = Slider(axq1, "q1", 1.0, 20.0, 1.0, valstep=1)
@@ -56,3 +67,4 @@ def electrostatics1():
     charge1.on_changed(update)
     charge2.on_changed(update)
     plt.show()
+plot1()
