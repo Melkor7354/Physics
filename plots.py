@@ -65,4 +65,3 @@ def electrostatics1():
     charge1.on_changed(update)
     charge2.on_changed(update)
     plt.show()
-plot1()
