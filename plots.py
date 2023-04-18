@@ -51,19 +51,11 @@ def electrostatics1():
     fig, ax = plt.subplots()
     plt.subplots_adjust(bottom=0.35)
     x = np.arange(0.0, 1.0, 0.01)
-    y = (9 * 1 * 1)/(x**2)
+    y = (9 * 10**9 * 1 * 1)/(x**2)
     p, = plt.plot(x, y)
-
-
-    axq1 = plt.axes([0.25, 0.15, 0.65, 0.03])
-    axq2 = plt.axes([0.25, 0.1, 0.65, 0.03])
-    charge1 = Slider(axq1, "q1", 1.0, 20.0, 1.0, valstep=1)
-    charge2 = Slider(axq2, "q2", 1.0, 20.0, 1.0, valstep=1)
-    def update(val):
-        q1 = charge1.val
-        q2 = charge2.val
-        p.set_ydata((9*q1*q2)/(x**2))
-
-    charge1.on_changed(update)
-    charge2.on_changed(update)
     plt.show()
+
+def electrostatics2():
+    fig, ax = plt.subplots()
+    plt.subplots_adjust(bottom=0.35)
+    x = np

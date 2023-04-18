@@ -95,7 +95,7 @@ class AboutProject(tk.Frame):
         icon_img.place(relx=0.01, rely=0)
         btn2 = SideButton(text="GITHUB REPOSITORY", command=open_github)
         btn2.place(relx=-0.015, rely=0.195)
-
+        TextAbout(text="This is the about me page").place(relx=0.5, rely=0.5)
 
 # Creating a button class that will change text color on hover
 class SideButton(tk.Button):
