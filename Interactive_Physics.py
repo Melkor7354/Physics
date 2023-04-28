@@ -2,6 +2,7 @@ import tkinter as tk
 import plots
 import ctypes as ct
 import webbrowser
+import wolfram_api
 
 font_sidebutton = ('Courier', 16)
 font_topbar_name = ('Courier', 30)
@@ -82,8 +83,20 @@ class BasicPage(tk.Frame):
 class AboutProject(BasicPage):
     def __init__(self, master):
         BasicPage.__init__(self, master)
-        chap2 = ChapterName(text="This is the about me page", command=lambda: master.switch_frame(ChapterOne))
-        chap2.place(relx=0.4, rely=0.4)
+        def query_perform():
+            entry = enter.get()
+            output = wolfram_api.query(entry)
+            answer.config(text=output)
+        enter = EntryField()
+        enter.place(relx=0.3, rely=0.3)
+        submit = Submit(command=query_perform, text="Submit")
+        submit.place(relx=0.3, rely=0.4)
+        answer = tk.Label()
+        answer.place(relx=0.3, rely=0.5)
+
+
+
+
 
 
 # Creating a button class that will change text color on hover
@@ -189,6 +202,32 @@ class TextAbout(tk.Text):
         self.text = text
         self['text'] = self.text
         self.config(bg=color_frame)
+
+
+class EntryField(tk.Entry):
+    def __init__(self, fg='blue', bg='black'):
+        tk.Entry.__init__(self)
+        self.fg = fg
+        self.bg = bg
+        self['fg'] = self.fg
+        self['bg'] = self.bg
+        self.config(width=100)
+
+
+class Submit(tk.Button):
+    def __init__(self, command, text):
+        tk.Button.__init__(self)
+        self.command = command
+        self.text = text
+        self['command'] = self.command
+        self['text'] = self.text
+        self.config(fg='black', bg='black', width=100)
+    def query(self, entry):
+        a = wolfram_api.query(entry)
+
+
+
+
 
 
 app = PhysicsGui()
