@@ -4,12 +4,10 @@ from matplotlib.widgets import Slider, Button
 from matplotlib.ticker import (AutoMinorLocator, MultipleLocator)
 
 def plot1():
-    # Create subplot
     fig, ax = plt.subplots()
     plt.subplots_adjust(bottom=0.35)
 
-    # Create and plot sine wave
-    t = np.arange(0.0, 1.0, 0.001)
+    t = np.arange(-100, 100, 0.001)
     s = 5 * np.sin(2 * np.pi * 3 * t)
     l, = plt.plot(t, s)
     l.set_color('red')
@@ -20,6 +18,8 @@ def plot1():
     plt.xlabel("Time")
     plt.grid(axis='both', color='grey')
     ax.set_facecolor("black")
+    ax.set_xlim(-1, 1)
+    ax.set_ylim(-10, 10)
     fig.set_facecolor("#03738C")
     # Create axes for frequency and amplitude sliders
     axfreq = plt.axes([0.25, 0.15, 0.65, 0.03])
@@ -39,11 +39,8 @@ def plot1():
         f = freq.val
         a = amplitude.val
         l.set_ydata(a * np.sin(2 * np.pi * f * t))
-
-    # Call update function when slider value is changed
     freq.on_changed(update)
     amplitude.on_changed(update)
-    # display graph
     plt.show()
 
 
@@ -58,4 +55,4 @@ def electrostatics1():
 def electrostatics2():
     fig, ax = plt.subplots()
     plt.subplots_adjust(bottom=0.35)
-    x = np
+    x = np.arange()

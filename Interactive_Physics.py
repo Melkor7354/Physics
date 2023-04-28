@@ -31,7 +31,7 @@ class PhysicsGui(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         self._frame = None
-        self.switch_frame(StartPage)
+        self.switch_frame(BasicPage)
         icon = tk.PhotoImage(file='C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon_new1.png')
         self.iconphoto(False, icon)
         self.title("INTERACTIVE PHYSICS")
@@ -57,7 +57,7 @@ class PhysicsGui(tk.Tk):
         self._frame.pack()
 
 
-class StartPage(tk.Frame):
+class BasicPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         self.config(height=PhysicsGui.winfo_screenheight(self), width=PhysicsGui.winfo_screenwidth(self), bg=color_topbar)
@@ -68,7 +68,7 @@ class StartPage(tk.Frame):
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
         btn1.place(relx=-0.015, rely=0.15)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
-        homebutton = HomeButton(command=lambda: master.switch_frame(StartPage), image=home)
+        homebutton = HomeButton(command=lambda: master.switch_frame(BasicPage), image=home)
         homebutton.place(relx=0.01, rely=0.08)
         icon = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon_new1.png")
         icon_img = HomeButton(image=icon)
@@ -79,23 +79,12 @@ class StartPage(tk.Frame):
         chap1.place(relx=0.5, rely=0.5)
 
 
-class AboutProject(tk.Frame):
+class AboutProject(BasicPage):
     def __init__(self, master):
-        tk.Frame.__init__(self, master)
-        self.config(height=PhysicsGui.winfo_screenheight(self), width=PhysicsGui.winfo_screenwidth(self), bg=color_topbar)
-        TopBar().place(rely=0)
-        SideNavigationBar().place(relx=0, rely=0)
-        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
-        btn1.place(relx=-0.015, rely=0.15)
-        home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
-        homebutton = HomeButton(command=lambda: master.switch_frame(StartPage), image=home)
-        homebutton.place(relx=0.01, rely=0.08)
-        icon = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon_new1.png")
-        icon_img = HomeButton(image=icon)
-        icon_img.place(relx=0.01, rely=0)
-        btn2 = SideButton(text="GITHUB REPOSITORY", command=open_github)
-        btn2.place(relx=-0.015, rely=0.195)
-        TextAbout(text="This is the about me page").place(relx=0.5, rely=0.5)
+        BasicPage.__init__(self, master)
+        chap2 = ChapterName(text="This is the about me page", command=lambda: master.switch_frame(ChapterOne))
+        chap2.place(relx=0.4, rely=0.4)
+
 
 # Creating a button class that will change text color on hover
 class SideButton(tk.Button):
@@ -183,7 +172,7 @@ class ChapterOne(tk.Frame):
         btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
         btn1.place(relx=-0.015, rely=0.15)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
-        homebutton = HomeButton(command=lambda: master.switch_frame(StartPage), image=home)
+        homebutton = HomeButton(command=lambda: master.switch_frame(BasicPage), image=home)
         homebutton.place(relx=0.01, rely=0.08)
         icon = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon_new1.png")
         icon_img = HomeButton(image=icon)
