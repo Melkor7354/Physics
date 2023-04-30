@@ -32,7 +32,7 @@ class PhysicsGui(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         self._frame = None
-        self.switch_frame(BasicPage)
+        self.switch_frame(StartPage)
         icon = tk.PhotoImage(file='C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon_new1.png')
         self.iconphoto(False, icon)
         self.title("INTERACTIVE PHYSICS")
@@ -63,11 +63,11 @@ class BasicPage(tk.Frame):
         tk.Frame.__init__(self, master)
         self.config(height=PhysicsGui.winfo_screenheight(self), width=PhysicsGui.winfo_screenwidth(self), bg=color_topbar)
         TopBar().place(rely=0)
-        button1 = tk.Button(text="Click to see plot 1", command=plots.plot1)
-        button1.place(relx=0.2, rely=0.2)
         SideNavigationBar().place(relx=0, rely=0)
-        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
+        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(WolframApi))
         btn1.place(relx=-0.015, rely=0.15)
+        btn3 = SideButton(text="WOLFRAM ALPHA", command=lambda: master.switch_frame(WolframApi))
+        btn3.place(relx=-0.031, rely=0.24)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
         homebutton = HomeButton(command=lambda: master.switch_frame(BasicPage), image=home)
         homebutton.place(relx=0.01, rely=0.08)
@@ -76,11 +76,19 @@ class BasicPage(tk.Frame):
         icon_img.place(relx=0.01, rely=0)
         btn2 = SideButton(text="GITHUB REPOSITORY", command=open_github)
         btn2.place(relx=-0.015, rely=0.195)
+
+
+
+
+class StartPage(BasicPage):
+    def __init__(self, master):
+        BasicPage.__init__(self, master)
         chap1 = ChapterName(text='Chapter 1 - Electrostatics', command=lambda: master.switch_frame(ChapterOne))
-        chap1.place(relx=0.5, rely=0.5)
+        chap1.pack()
 
 
-class AboutProject(BasicPage):
+
+class WolframApi(BasicPage):
     def __init__(self, master):
         BasicPage.__init__(self, master)
         def query_perform():
@@ -89,14 +97,12 @@ class AboutProject(BasicPage):
             answer.config(text=output)
         enter = EntryField()
         enter.place(relx=0.3, rely=0.3)
-        submit = Submit(command=query_perform, text="Submit")
+        submit = ChapterName(command=query_perform, text="Submit")
         submit.place(relx=0.3, rely=0.4)
         answer = tk.Label()
         answer.place(relx=0.3, rely=0.5)
-
-
-
-
+        answer.config(width=50, height=10, font=font_sidebutton, bg='black', fg='white', justify="left", anchor="w", wraplength=675)
+        tk.Label(text="Enter query here", fg='white', bg=color_topbar, width=50, font=font_sidebutton, anchor='w').place(relx=0.3, rely=0.25)
 
 
 # Creating a button class that will change text color on hover
@@ -182,7 +188,7 @@ class ChapterOne(tk.Frame):
         button1 = tk.Button(text="Click to see plot 1", command=plots.electrostatics1)
         button1.place(relx=0.2, rely=0.2)
         SideNavigationBar().place(relx=0, rely=0)
-        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(AboutProject))
+        btn1 = SideButton(text="ABOUT THE PROJECT", command=lambda: master.switch_frame(WolframApi))
         btn1.place(relx=-0.015, rely=0.15)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
         homebutton = HomeButton(command=lambda: master.switch_frame(BasicPage), image=home)
@@ -205,13 +211,16 @@ class TextAbout(tk.Text):
 
 
 class EntryField(tk.Entry):
-    def __init__(self, fg='blue', bg='black'):
+    def __init__(self, fg='white', bg='black', font=font_sidebutton):
         tk.Entry.__init__(self)
         self.fg = fg
         self.bg = bg
+        self.font = font
         self['fg'] = self.fg
         self['bg'] = self.bg
-        self.config(width=100)
+        self['font'] = self.font
+        self.config(width=50)
+
 
 
 class Submit(tk.Button):
@@ -221,7 +230,7 @@ class Submit(tk.Button):
         self.text = text
         self['command'] = self.command
         self['text'] = self.text
-        self.config(fg='black', bg='black', width=100)
+        self.config(fg='white', bg='black', width=100)
     def query(self, entry):
         a = wolfram_api.query(entry)
 
