@@ -20,7 +20,7 @@ def plot1():
     ax.set_facecolor("black")
     ax.set_xlim(-1, 1)
     ax.set_ylim(-10, 10)
-    fig.set_facecolor("#03738C")
+    fig.set_facecolor("#45ADA8")
     # Create axes for frequency and amplitude sliders
     axfreq = plt.axes([0.25, 0.15, 0.65, 0.03])
     axamplitude = plt.axes([0.25, 0.1, 0.65, 0.03])
@@ -56,3 +56,4 @@ def electrostatics2():
     fig, ax = plt.subplots()
     plt.subplots_adjust(bottom=0.35)
     x = np.arange()
+

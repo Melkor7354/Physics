@@ -7,8 +7,8 @@ import wolfram_api
 font_sidebutton = ('Courier', 16)
 font_topbar_name = ('Courier', 30)
 font_topbar_credits = ('Courier', 15)
-color_topbar = '#03738C'
-color_frame = '#04ADBF'
+color_topbar = '#2F9599'
+color_frame = '#2F9599'
 color_sidebutton_hover = '#B4CBD9'
 color_main = 'black'
 
@@ -69,13 +69,14 @@ class BasicPage(tk.Frame):
         btn3 = SideButton(text="WOLFRAM ALPHA", command=lambda: master.switch_frame(WolframApi))
         btn3.place(relx=-0.031, rely=0.24)
         home = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\home_icon-removebg-preview.png")
-        homebutton = HomeButton(command=lambda: master.switch_frame(BasicPage), image=home)
+        homebutton = HomeButton(command=lambda: master.switch_frame(StartPage), image=home)
         homebutton.place(relx=0.01, rely=0.08)
         icon = tk.PhotoImage(file="C:\\Users\\EKLAVYA\\Pictures\\GUI\\Icon_new1.png")
         icon_img = HomeButton(image=icon)
         icon_img.place(relx=0.01, rely=0)
         btn2 = SideButton(text="GITHUB REPOSITORY", command=open_github)
         btn2.place(relx=-0.015, rely=0.195)
+
 
 
 
@@ -93,8 +94,11 @@ class WolframApi(BasicPage):
         BasicPage.__init__(self, master)
         def query_perform():
             entry = enter.get()
-            output = wolfram_api.query(entry)
-            answer.config(text=output)
+            try:
+                output = wolfram_api.query(entry)
+                answer.config(text=output)
+            except:
+                answer.config(text="Query was unable to be performed.")
         enter = EntryField()
         enter.place(relx=0.3, rely=0.3)
         submit = ChapterName(command=query_perform, text="Submit")
@@ -219,7 +223,7 @@ class EntryField(tk.Entry):
         self['fg'] = self.fg
         self['bg'] = self.bg
         self['font'] = self.font
-        self.config(width=50)
+        self.config(width=50, insertbackground='white', selectbackground="cyan", selectforeground='black')
 
 
 
@@ -236,9 +240,8 @@ class Submit(tk.Button):
 
 
 
-
-
-
 app = PhysicsGui()
 
 app.mainloop()
+
+
