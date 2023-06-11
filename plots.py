@@ -1,4 +1,4 @@
-import numpy
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button
@@ -114,7 +114,7 @@ def electrostatics3():
     plt.xlabel("Radius (r)", fontsize=12)
     plt.grid(axis='both', color='grey')
     ax.set_facecolor("black")
-    ax.set_xlim(-5, 200)
+    ax.set_xlim(-200, 200)
     ax.set_ylim(-5, 60)
     fig.set_facecolor("#45ADA8")
     plt.annotate('''r=R
